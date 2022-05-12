@@ -37,9 +37,9 @@ class final_rest
 
 	{
 			try {
-				EXEC_SQL("insert into directions (date, time, from, to, legs) values (CURRENT_DATE, CURRENT_TIME, from, to, legs)", $from, $to, $legs);
+				EXEC_SQL("insert into directions (date, time, beg, end, legs) values (CURRENT_DATE, CURRENT_TIME, ?, ?, ?)", $from, $to, $legs);
 				$retData["status"]=0;
-				$retData["message"]="insert of '$from' for from: '$to' and legs '$legs' accepted";
+				$retData["message"]="insert of '$from' for beg: '$to' and legs '$legs' accepted";
 			}
 			catch  (Exception $e) {
 				$retData["status"]=1;
