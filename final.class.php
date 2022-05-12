@@ -37,9 +37,9 @@ class final_rest
 
 	{
 			try {
-				EXEC_SQL("insert into temperature (location, sensor, value, date) values (?,?,?,CURRENT_TIMESTAMP)",$location, $sensor, $value);
+				EXEC_SQL("insert into directions (date, from, to, legs) values (CURRENT_TIMESTAMP, from, to, legs)",$from, $to, $legs);
 				$retData["status"]=0;
-				$retData["message"]="insert of '$value' for location: '$location' and sensor '$sensor' accepted";
+				$retData["message"]="insert of '$from' for from: '$to' and legs '$legs' accepted";
 			}
 			catch  (Exception $e) {
 				$retData["status"]=1;
