@@ -37,7 +37,7 @@ class final_rest
 
 	{
 			try {
-				EXEC_SQL("insert into directions (date, from, to, legs) values (CURRENT_TIMESTAMP, from, to, legs)",$from, $to, $legs);
+				EXEC_SQL("insert into directions (date, time, from, to, legs) values (CURRENT_DATE, CURRENT_TIME, from, to, legs)",$from, $to, $legs);
 				$retData["status"]=0;
 				$retData["message"]="insert of '$from' for from: '$to' and legs '$legs' accepted";
 			}
@@ -51,7 +51,7 @@ class final_rest
 	}
 	public static function getLookup($date) {
 		try {
-			$retData["result"] = GET_SQL("select * from temperature where date like ? order by date", $date . "%");
+			$retData["result"] = GET_SQL("select * from directions where date like ? order by date", $date . "%");
 		} catch (Exception $e) {	
 			$retData["status"]=1;
 			$retData["message"]=$e->getMessage();
